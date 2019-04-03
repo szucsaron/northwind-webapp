@@ -1,7 +1,12 @@
-com/codecool/web/model/Fasz.class
-com/codecool/web/dao/NorthwindDao.class
+com/codecool/web/model/Product.class
+com/codecool/web/servlet/Task2Servlet.class
 com/codecool/web/servlet/Task1Servlet.class
 com/codecool/web/listener/WebappContextListener.class
-com/codecool/web/dao/AbstractDao.class
 com/codecool/web/servlet/AbstractServlet.class
+com/codecool/web/dao/CompanyDao.class
+com/codecool/web/dao/ProductDao.class
+com/codecool/web/model/Company.class
+com/codecool/web/service/ProductService.class
+com/codecool/web/dao/AbstractDao.class
 com/codecool/web/MyTest.class
+com/codecool/web/service/CompanyService.class

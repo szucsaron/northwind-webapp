@@ -4,16 +4,16 @@
 <html lang="en">
 <body>
     <p>
-        <form action = "task1" method = "get">
-            Filter by Company::<br>
-            <input type="text" name="company"><br>
+        <form action = "task2" method = "get">
+            Filter by minimum number of products::<br>
+            <input type="text" name="productNum"><br>
             <input type="submit" value="Submit">
         </form>
     </p>
     <table>
-        <c:forEach var="product" items="${products}">
+        <c:forEach var="company" items="${companies}">
             <tr>
-                <td>${product.getName()}</td><td>${product.getCompany()}</td>
+                <td>${company.getName()}</td><td>${company.getNumberOfProducts()}</td>
             </tr>
         </c:forEach>
     </table>

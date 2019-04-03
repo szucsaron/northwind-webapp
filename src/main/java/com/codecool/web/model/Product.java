@@ -7,7 +7,7 @@ public class Product {
     private String name;
 
     public Product(String name, String company) {
-        this.name = this.name;
+        this.name = name;
         this.company = company;
     }
 
@@ -17,5 +17,9 @@ public class Product {
 
     public String getName() {
         return name;
+    }
+
+    public String toString() {
+        return String.format("name: %s, company: %s", name, company);
     }
 }
