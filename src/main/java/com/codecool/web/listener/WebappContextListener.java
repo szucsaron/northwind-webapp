@@ -53,40 +53,7 @@ public final class WebappContextListener implements ServletContextListener {
         }
     }
 
-    private void runDatabaseInitScript(DataSource dataSource, String resource) {
-        /*
-            A new Connection is obtained to the database to run the initialization
-            script on startup. Because of the try-with-resource construct the
-            database connection is automatically closed at the end of the try-catch
-            block.
-        */
-        try (Connection connection = dataSource.getConnection()) {
-            ScriptUtils.executeSqlScript(connection, new ClassPathResource(resource));
-        } catch (Throwable t) {
-            t.printStackTrace();
-            throw new IllegalStateException(t);
-        }
-        /*
-            Doing this is basically it's equivalent to this
 
-            Connection connection = null;
-            try {
-                connection = dataSource.getConnection();
-                ScriptUtils.executeSqlScript(connection, new ClassPathResource(resource));
-            } catch (Throwable t) {
-                t.printStackTrace();
-                throw new IllegalStateException(t);
-            } finally {
-                if (connection != null) {
-                    try {
-                        connection.close();
-                    } catch (SQLException ex) {
-                        ex.printStackTrace();
-                    }
-                }
-            }
-        */
-    }
 
     @Override
     public void contextDestroyed(ServletContextEvent sce) {

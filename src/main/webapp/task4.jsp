@@ -4,19 +4,24 @@
 <html lang="en">
 <body>
     <p>
-        <form action = "task3" method = "get">
+        <form action = "task4" method = "get">
             Filter by company name:<br>
             <input type="text" name="companyName"><br>
             <input type="submit" value="Submit">
         </form>
     </p>
     <table>
+        <tr>
+        <td><h3>Company</h3></td><td><h3>Orders</h3></td>
+        </tr>
+        <c:forEach var="orders" items="${orderLst}">
             <tr>
-            <td><h3>Company</h3></td><td><h3>Number of Products</h3></td>
-            </tr>
-        <c:forEach var="company" items="${companies}">
-            <tr>
-                <td>${company.getName()}</td><td>${company.getNumberOfProducts()}</td>
+                <td>
+                    ${orders.getCompanyName()}
+                    <c:forEach var="order" items="${orders.getOrders()}">,
+                        ${order}
+                    </c:forEach>
+                </td>
             </tr>
         </c:forEach>
     </table>

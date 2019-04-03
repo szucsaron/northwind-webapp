@@ -1,6 +1,7 @@
 package com.codecool.web.service;
 
 import com.codecool.web.dao.ProductDao;
+import com.codecool.web.model.PricedProduct;
 import com.codecool.web.model.Product;
 
 import java.sql.SQLException;
@@ -18,6 +19,10 @@ public class ProductService {
             return productDao.getFiltered("");
         }
         return productDao.getFiltered(companyName);
+    }
+
+    public PricedProduct getProductWithMaxPrice() throws SQLException{
+        return productDao.getProductWIthMaxPrice();
     }
 
 

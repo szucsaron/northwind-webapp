@@ -17,16 +17,16 @@ CREATE TABLE users (
 
 CREATE TABLE shops (
     id SERIAL PRIMARY KEY,
-    name TEXT NOT NULL,
-	CONSTRAINT name_not_empty CHECK (name <> '')
+    companyName TEXT NOT NULL,
+	CONSTRAINT name_not_empty CHECK (companyName <> '')
 );
 
 CREATE TABLE coupons (
     id SERIAL PRIMARY KEY,
     user_id INTEGER,
-    name TEXT NOT NULL,
+    companyName TEXT NOT NULL,
     percentage INTEGER NOT NULL,
-    CONSTRAINT name_not_empty CHECK (name <> ''),
+    CONSTRAINT name_not_empty CHECK (companyName <> ''),
 	CONSTRAINT percentage_between_bounds CHECK (percentage >= 0 AND percentage <= 100),
 	FOREIGN KEY (user_id) REFERENCES users(id)
 );
@@ -44,14 +44,14 @@ INSERT INTO users (email, password) VALUES
 	('user2@user2', 'user2'), -- 2
 	('user2@user3', 'user3'); -- 3
 
-INSERT INTO shops (name) VALUES
+INSERT INTO shops (companyName) VALUES
 	('SPAR'),   -- 1
 	('Tesco'),  -- 2
 	('Auchan'), -- 3
 	('LIDL'),   -- 4
 	('ALDI');   -- 5
 
-INSERT INTO coupons (name, user_id, percentage) VALUES
+INSERT INTO coupons (companyName, user_id, percentage) VALUES
 	('Sausage discount', 1, 10),           -- 1
 	('Bread super-sale', 1, 50),           -- 2
 	('Bread super-sale', 2, 40),           -- 3
