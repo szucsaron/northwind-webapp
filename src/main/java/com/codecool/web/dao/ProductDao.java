@@ -12,7 +12,7 @@ public class ProductDao extends AbstractDao {
         super(connection);
     }
 
-    public List<Product> getProducts(String companyName) throws SQLException {
+    public List<Product> GetFilteredProducts(String companyName) throws SQLException {
         companyName += "%";
         String sql = "select product_name as Product, company_name as Company " +
                 "from products " +

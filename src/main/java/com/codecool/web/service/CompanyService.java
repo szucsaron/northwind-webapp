@@ -1,9 +1,7 @@
 package com.codecool.web.service;
 
 import com.codecool.web.dao.CompanyDao;
-import com.codecool.web.dao.ProductDao;
 import com.codecool.web.model.Company;
-import com.codecool.web.model.Product;
 
 import java.sql.SQLException;
 import java.util.List;
@@ -15,13 +13,20 @@ public class CompanyService {
         this.companyDao = companyDao;
     }
 
-    public List<Company> getCompanies(String productNumberParameter) throws SQLException {
+    public List<Company> getCompaniesByProductNumber(String productNumberParameter) throws SQLException {
         try {
             int minimumNumberOfProducts = Integer.parseInt(productNumberParameter);
-            return companyDao.getCompanies(minimumNumberOfProducts);
+            return companyDao.getFilteredCompanies(minimumNumberOfProducts);
 
         } catch (NumberFormatException e) {
-            return companyDao.getCompanies(0);
+            return companyDao.getFilteredCompanies(0);
         }
+    }
+
+    public List<Company> getCompaniesByName(String companyName) throws SQLException {
+        if (companyName == null) {
+            return companyDao.getFilteredCompanies("");
+        }
+        return companyDao.getFilteredCompanies(companyName);
     }
 }

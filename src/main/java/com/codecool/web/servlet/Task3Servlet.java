@@ -14,8 +14,8 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 
-@WebServlet("/task2")
-public final class Task2Servlet extends AbstractServlet {
+@WebServlet("/task3")
+public final class Task3Servlet extends AbstractServlet {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
@@ -23,9 +23,9 @@ public final class Task2Servlet extends AbstractServlet {
             Connection connection = getConnection(getServletContext());
             CompanyDao db = new CompanyDao(connection);
             CompanyService companyService = new CompanyService(db);
-            List<Company> companies = companyService.getCompaniesByProductNumber(req.getParameter("productNum"));
+            List<Company> companies = companyService.getCompaniesByName(req.getParameter("companyName"));
             req.setAttribute("companies", companies);
-            req.getRequestDispatcher("task2.jsp").forward(req, resp);
+            req.getRequestDispatcher("task3.jsp").forward(req, resp);
 
         } catch (SQLException e) {
             redirectToErrorPage(req, resp, e);

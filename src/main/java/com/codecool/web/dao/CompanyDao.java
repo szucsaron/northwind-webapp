@@ -16,7 +16,7 @@ public class CompanyDao extends AbstractDao {
         super(connection);
     }
 
-    public List<Company> getCompanies(int minimumProductNum) throws SQLException {
+    public List<Company> getFilteredCompanies(int minimumProductNum) throws SQLException {
 
         String sql = "select suppliers.company_name as Company, count (*) as NumberOfProducts\n" +
                 "from suppliers  \n" +
@@ -27,6 +27,30 @@ public class CompanyDao extends AbstractDao {
 
         try (PreparedStatement statement = connection.prepareStatement(sql)) {
             statement.setInt(1, minimumProductNum);
+
+            ResultSet resultSet = statement.executeQuery();
+            List<Company> companies = new ArrayList<>();
+            while (resultSet.next()) {
+                companies.add(new Company(
+                        resultSet.getString("company"),
+                        resultSet.getInt("numberofproducts")));
+            }
+            return companies;
+        }
+
+    }
+
+    public List<Company> getFilteredCompanies(String companyName) throws SQLException {
+        companyName += "%";
+        String sql = "select suppliers.company_name as Company, count (*) as NumberOfProducts\n" +
+                "from suppliers  \n" +
+                "right join products on products.supplier_id = suppliers.supplier_id\n" +
+                "group by suppliers.supplier_id\n" +
+                "having count(*) >= 5\n and company_name like ?" +
+                "order by count(*);";
+
+        try (PreparedStatement statement = connection.prepareStatement(sql)) {
+            statement.setString(1, companyName);
 
             ResultSet resultSet = statement.executeQuery();
             List<Company> companies = new ArrayList<>();
