@@ -16,7 +16,7 @@ public class CompanyDao extends AbstractDao {
         super(connection);
     }
 
-    public List<Company> getFilteredCompanies(int minimumProductNum) throws SQLException {
+    public List<Company> getFiltered(int minimumProductNum) throws SQLException {
 
         String sql = "select suppliers.company_name as Company, count (*) as NumberOfProducts\n" +
                 "from suppliers  \n" +
@@ -40,7 +40,7 @@ public class CompanyDao extends AbstractDao {
 
     }
 
-    public List<Company> getFilteredCompanies(String companyName) throws SQLException {
+    public List<Company> getFiltered(String companyName) throws SQLException {
         companyName += "%";
         String sql = "select suppliers.company_name as Company, count (*) as NumberOfProducts\n" +
                 "from suppliers  \n" +

@@ -8,7 +8,7 @@ JDBC.
 Before deploying to a webserver create a `Resource` like in your webserver's config (e.g. for Apache Tomcat in `conf/context.xml`).
 
 ```
-<Resource name="jdbc/couponStore"
+<Resource companyName="jdbc/couponStore"
           type="javax.sql.DataSource"
           username="postgres"
           password="admin"

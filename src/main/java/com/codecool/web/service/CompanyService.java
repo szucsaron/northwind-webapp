@@ -16,17 +16,17 @@ public class CompanyService {
     public List<Company> getCompaniesByProductNumber(String productNumberParameter) throws SQLException {
         try {
             int minimumNumberOfProducts = Integer.parseInt(productNumberParameter);
-            return companyDao.getFilteredCompanies(minimumNumberOfProducts);
+            return companyDao.getFiltered(minimumNumberOfProducts);
 
         } catch (NumberFormatException e) {
-            return companyDao.getFilteredCompanies(0);
+            return companyDao.getFiltered(0);
         }
     }
 
     public List<Company> getCompaniesByName(String companyName) throws SQLException {
         if (companyName == null) {
-            return companyDao.getFilteredCompanies("");
+            return companyDao.getFiltered("");
         }
-        return companyDao.getFilteredCompanies(companyName);
+        return companyDao.getFiltered(companyName);
     }
 }

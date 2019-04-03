@@ -15,9 +15,9 @@ public class ProductService {
 
     public List<Product> getProducts(String companyName) throws SQLException {
         if (companyName == null) {
-            return productDao.GetFilteredProducts("");
+            return productDao.getFiltered("");
         }
-        return productDao.GetFilteredProducts(companyName);
+        return productDao.getFiltered(companyName);
     }
 
 
